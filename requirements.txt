@@ -1,6 +1,0 @@
-cryptography==46.0.6
-CTkMessagebox==2.7
-customtkinter==5.2.2
-PyGithub==2.9.0
-pypresence==4.6.1
-ursina==8.3.0
