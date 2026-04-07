@@ -69,28 +69,6 @@ print("Example game started")
 input("Press Enter to exit")
 ```
 
-## Security (urgent)
-
-I found two major security issues in the current repository state:
-
-1. Hard-coded Fernet key and encrypted token inside `main.py`:
-   - `main.py` contains a plaintext Fernet key and an encrypted token string. Anyone with access to the repo can decrypt or misuse these values, depending on how the token was created.
-   - The code creates a PyGithub `Auth.Token` from the decrypted secret — this is effectively a GitHub access token embedded in the repo.
-
-2. Persisted credentials in JSON after encryption/decryption:
-   - Signing up writes an encrypted username/password into `logindetails.json` inside the repo. While the values are encrypted with the same hard-coded key, keeping them in the repository directory is risky.
-
-Recommended immediate actions:
-- Rotate and revoke the exposed token(s) immediately (GitHub personal access tokens or OAuth apps that were used). If it’s a GitHub token, revoke it in GitHub account settings.
-- Remove the hard-coded key and encrypted token from the code. Replace with environment variables (e.g., FERNET_KEY, GITHUB_TOKEN, DISCORD_APP_ID).
-- Remove sensitive values from git history (use git filter-repo or BFG) and force-push the cleaned history, or create a new repository if necessary.
-- Add `.env` to `.gitignore` and use python-dotenv or OS environment variables for local development.
-
-If you want, I can:
-- Create a safe patch that updates `main.py` to read secrets from environment variables and remove hard-coded values.
-- Generate a `.env.example` and update `.gitignore`.
-- Provide step-by-step commands to purge secrets from git history.
-
 ## Development / Contributing
 
 - Follow PEP8 and use linters/formatters like black/flake8 if desired.
