@@ -4,8 +4,6 @@
 
 Lightweight Python project that provides a menu UI to run simple "game" scripts from a games/ folder. This repository is a learning/prototype project inspired by sandbox platforms.
 
-> Warning: This project currently contains hard-coded secrets in `main.py` (an encryption key and an encrypted token). See the Security section below and rotate/remove secrets immediately.
-
 ## Project overview
 
 - Entry point: `main.py`
